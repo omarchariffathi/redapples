@@ -1,0 +1,59 @@
+{% include 'base.html' %}
+{% block content %}
+<div class="container animated zoomIn">
+    <div class="row col-lg-12" style="text-align: center">
+        <hr>
+        <h3 class="form-signin-heading" id="job">Login</h3>
+        <p>
+        <div class="well col-lg-8" style="float: none; border: 20px solid white; " id="group">
+            <div class="input-group" id="answer"> 
+                    
+                
+                    <form class="col-lg-12" action="/accounts/auth/" method="post">{% csrf_token %}
+                        
+                            <div class="well col-lg-12">
+                                <div class="col-lg-6" id="father">
+                                    <label for="username">Username: </label>
+                                </div>
+                                <div class="col-lg-6" id="mother">
+                                    <input type="text" name="username" value="" id="username">
+                                </div>
+                            </div>
+                            <div class="well col-lg-12">
+                                <div class="col-lg-6" id="father">
+                                    <label for="password">Password:</label>
+                                </div>
+                                <div class="col-lg-6" id="mother">
+                                    <input type="password" name="password" value="" id="password">
+                                </div>
+                            </div>
+                            
+                        
+                            <div class="col-lg-12" style="margin-top: 40px;">
+                                <input id="login" type="submit" value="login">
+                            </div>
+                            
+                    </form>
+                
+            </div>
+        </div>
+        </p>
+    </div>
+</div>
+
+<script>
+    $("#login").on('mouseover', function(){
+        $(this).css('background-color', 'gold');
+        $(this).css('color', 'white');
+    });
+    $("#login").on('mouseout', function(){
+        $(this).css('background-color', 'white');
+        $(this).css('color', 'gold');
+    });
+</script>
+
+
+{% endblock content %}
+
+
+

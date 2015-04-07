@@ -1,0 +1,90 @@
+
+<html>
+    <head>
+        <meta  charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load staticfiles %}
+        {% load humanize %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" media="screen">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/custom-1.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    </head>
+    <body style="background-color: #ebebeb;">
+        
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+        
+        <script>
+            var all = 0 + {{ latest_answer_list|length }};
+            var index = 0;
+            function btn_list(i, t)
+            {
+                this.id = i;
+                this.text = t;
+            }
+            var buff = new Array();
+        </script>
+        
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <p><a class="navbar-brand" href="#" style="margin-right: 50px;">28-DMET</a></p>
+                </div>
+                
+                {% if full_name %}
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    
+                    <p><form action="/g/add_question/" method="post">{% csrf_token %}
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" value="g">Ask</button>
+                                </span>
+                                <input type="text" class="form-control" name="question" value="" placeholder="Ask a question ..">
+                            </div>
+                        </div>
+                    </form></p>
+                    
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/g/">Dashboard</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                                {{full_name}} 
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><p></p><a href="/g/my_questions/">My Questions</a></li>
+                                <li><a href="/g/my_answers/">My Answers</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/accounts/logout/">Sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>                        
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="animated slideInDown">
+        {% if full_name %}
+            {% block content %}
+            {% endblock content %}
+        {% else %}
+            
+        {% endif %}
+        </div>
+        <!--scripts-->
+        <script src="{% static 'js/numerate.js' %}"></script>
+        <script src="{% static 'js/text-tab.js' %}"></script>
+        <script src="{% static 'js/animated-click.js' %}"></script>
+        <script src="{% static 'js/place.js' %}"></script>
+    </body>
+</html>

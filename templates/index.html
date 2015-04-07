@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <meta  charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load staticfiles %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/custom-1.css' %}">
+    </head>
+    <body>
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+        
+        <script>
+            var all = 0 + {{ latest_choice_list|length }};
+            var index = 0;
+            function btn_list(i, t)
+            {
+                this.id = i;
+                this.text = t;
+            }
+            var buff = new Array();
+        </script>
+        
+        <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">28-DMET</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="ask" placeholder="Ask a Question ..">
+        </div>
+        <a type="submit" class="btn btn-default" id="submit">Submit</a>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://127.0.0.1:8000/polls/">Dash</a></li>
+        <li><a href="#">Inbox</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Activity<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">My Questions</a></li>
+            <li><a href="#">My Answers</a></li>
+              <li class="divider"></li>
+            <li><a href="#">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+        
+        
+        <div class="container">
+            <div class="row" style="text-align: center">
+            {% if latest_poll_list %}
+                {% for poll in latest_poll_list %}
+                <p>
+                    <div class="well col-xs-8" style="float: none; border: 50px solid white; padding: 30px;" id="group">
+                    <a href="/polls/{{ poll.id }}/" id="question">{{ poll.question }}<br><br><br></a>
+                        <p>
+                        {% if latest_choice_list %}
+                            {% for choice in latest_choice_list %}
+                                {% ifequal choice.poll.id poll.id %}
+                                <script>
+                                    buff.push(new btn_list( {{ choice.id }}, '{{ choice.text }}' ));
+                                </script>
+                                <p><button type="button" id='{{choice.id}}' class="mybtn" >{{choice.text}}</button></p>
+                                {% endifequal %}
+                            {% endfor %}
+                        {% else %}
+                            <p>No options for this poll</p>
+                        {% endif %}
+                        </p>
+                    </div>
+                </p>
+
+                {% endfor %}
+            {% else %}
+                <p>No polls are available</p>
+            {% endif %}
+            </div>
+        </div>
+        
+        <script>
+            
+            
+            $("#submit").on('click', function(){
+                $(this).html("done !");
+                
+                $(this).fadeOut(4000, "swing");
+                $("#ask").fadeOut(4000, "swing", function(){
+                    $("#submit").html("submit");
+                    $("#submit").fadeIn(100, "swing");
+                    $("#ask").fadeIn(100, "swing");
+                });
+                
+            });
+            
+            $(".mybtn").on('click', function(){
+                var i = $(this).attr('id');
+                
+                $("#" + i).fadeOut(500, "swing");
+                for(var j = 0; j < all; j++)
+                {
+                    if(buff[j].id == i)
+                    {
+                        if($("#" + i).html() == 'got clicked !')
+                        {
+                            $("#" + i).html(buff[j].text);
+                        } else {
+                            $("#" + i).html('got clicked !');
+                        } 
+                    }
+                }
+                $("#" + i).fadeIn(500, "swing");
+            });
+            
+        </script>
+    </body>
+</html>

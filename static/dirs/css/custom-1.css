@@ -1,0 +1,187 @@
+
+
+textarea{
+    resize: none;
+}
+
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#leada{
+    color: gold;
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#leada:hover {
+    color: white;
+    padding: 30px;
+    background-color: gold;
+    border-radius: 20px;
+}
+
+a:hover{
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#question{
+    font-weight: bold;
+    font-size: 17px;
+    color: firebrick;
+}
+
+#group{
+    margin: 50px auto;
+}
+
+#ask{
+    width: 450px;   
+}
+
+.mybtn{
+    color: gray;
+    outline: none;
+    width:200px;
+    height:30px;
+    border-radius:5px;
+    background-color:white;
+    border: 1px solid #ebebeb;
+}
+
+.mybtn:hover{
+    color: white;
+    outline: none;
+    width:200px; 
+    height:30px;
+    border-radius:5px; 
+    background-color:gray;
+    border: 1px solid #ebebeb;
+}
+
+
+.btn, btn-default{
+    color: gray;
+    outline: none;
+    border-radius:5px; 
+    background-color:white;
+    border: 1px solid #ebebeb;
+}
+
+.btn:hover, btn-default:hover{
+    color: white;
+    outline: none;
+    border-radius:5px; 
+    background-color:gray;
+    border: 1px solid #ebebeb;
+}
+
+.in{
+    color: gray;
+    background-color: white;
+    white-space: break-word;
+    border: 1px solid #ebebeb;
+    border-radius:5px;
+    padding: 20px;
+}
+
+#post{
+    cursor: pointer; 
+    text-decoration: none;
+}
+
+#answer{
+    font-size: 12px;
+}
+
+#post:hover{
+    font-weight: bold;
+}
+
+.badge{
+    border-radius: 2px;
+    color: gold;
+    background-color: white;
+}
+
+#is_answered{
+    margin: -10px auto;
+    float:right;
+}
+
+#is_answered .badge{
+    color: gold;
+}
+
+#is_answered:hover .badge{
+    background-color: gray;
+    color: gold;
+}
+
+#label{
+    margin: -10px auto;
+    float: left;
+}
+
+#label .badge{
+    color: gold;
+}
+
+#label:hover .badge{
+    background-color: gray;
+    color: gold;
+}
+
+.borderless{
+    border-color: white;   
+}
+
+hr{
+    height: 1px;
+    background-color: gold;
+    color: gold;
+}
+
+input{
+    border-radius: 5px;   
+}
+
+*{
+    font-family: monospace;
+    font-size: 12px; 
+}
+
+#father > label {
+    background-color: inherit;
+    border-color: #ababab;
+    border: 0px;
+    color: gold;
+    font-weight: bold;
+}
+
+#mother > input {
+    border-radius: 5px;
+}
+
+#register{
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+}
+
+#login{
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+}
+
+#job{
+    color: firebrick;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}

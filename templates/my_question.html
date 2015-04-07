@@ -1,0 +1,72 @@
+{% include 'base.html' %}
+{% block content %}
+    {% if full_name %}
+    {% if questions_list %}
+        <div class="container animated zoomIn">
+                <div class="row col-lg-12" style="text-align: center">
+                    {% for ques in questions_list %}
+                    <hr>
+                    <p>
+                    <div class="well col-lg-8" style="float: none; border: 20px solid white; padding: 10px;" id="group">
+                        
+                        <div style="padding-top: 10px;" class="col-lg-12">
+                            <div>
+                                <label class="btn btn-primary" id="label">On:<span class="badge" id="fav-badge">{{ ques.date|timesince }} ago</span></label>
+                                <label class="btn btn-primary" id="label">By:<span class="badge" id="fav-badge">{{ques.posted_by.first_name}} {{ques.posted_by.last_name}}</span></label>  
+                            </div>
+                            
+                        </div>
+
+                        <div>
+                            <div class="col-lg-12" style="padding-top: 30px">
+                                <a href="/g/{{ ques.id }}/" id="question">{{ ques.text }}<br><br><br>
+                                </a>
+                            </div>
+                            
+                            <div style="padding-top: 15px"></div>
+                            
+                                {% if answers_list %}
+                                    {% for answer in answers_list %}
+                                        {% ifequal answer.question.id ques.id %}
+                                        <script>buff.push(new btn_list( {{ answer.id }}, '{{ answer.text }}' ));</script>
+                                        <div class="col-lg-12" style="padding-top: 10px; padding-bottom: 10px">
+                                            <div class="panel panel-default">
+                                                <div class="panel-footer" style="font-weight: bold; text-align: center;">
+                                                    <span style="float: left">{{answer.posted_by.first_name}} {{answer.posted_by.last_name}}</span> 
+                                                    &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
+                                                    <span style="float: right">{{ answer.date|timesince }} ago</span>
+                                                </div>
+                                                <div class="panel-body">{{answer.text}}</div>
+                                            </div>
+                                        </div>
+                                        {% endifequal %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No answers for this question yet</p>
+                                {% endif %}
+                            
+                                <div class="input-group" id="answer" style="padding-top: 10px; padding-bottom: 10px"> 
+
+                                    <p><form action="/g/add_answer/" method="post">{% csrf_token %}
+                                        <div class="col-lg-12">
+                                            <div class="input-group">
+                                                <input type="text" style="display: none" name="ques_id" value="{{ques.id}}">
+                                                <input type="text" class="form-control" name="answer" value="" placeholder="Answer ..">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit" value="g">Answer</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form></p>
+
+                                </div>
+                          </div>
+                        </div>
+
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+    {% endif %}  
+    {% endif %}
+{% endblock content %}
