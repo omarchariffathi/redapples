@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container animated zoomIn">
         <div class="row col-lg-12" style="text-align: center">
-        {% if full_name %}
+        {% if first and last %}
             {% if latest_question_list %}
                 {% for ques in latest_question_list %}
                 <hr>

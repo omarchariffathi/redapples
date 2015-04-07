@@ -24,7 +24,8 @@ def logged_in(request):
     print request.POST
     return render_to_response(
         'logged_in.html',
-        {'full_name': request.user.username},
+        {'first': request.user.first_name,
+         'last': request.user.last_name},
     )
 
 

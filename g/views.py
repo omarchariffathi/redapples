@@ -25,7 +25,8 @@ def index(request):
         context = {
             'latest_question_list': latest_question_list,
             'latest_answer_list': latest_answer_list,
-            'full_name': request.user.username,
+            'first': request.user.first_name,
+            'last': request.user.last_name,
         }
         return render(request, template, context)
 
@@ -43,7 +44,8 @@ def questions(request, question_id):
             'answers_list': answers_list,
             'question_id': question_id,
             'ques': ques,
-            'full_name': request.user.username,
+            'first': request.user.first_name,
+            'last': request.user.last_name,
         }
         return render(request, template, context)
 
@@ -62,7 +64,8 @@ def my_answers(request):
         context = {
             'answers_list': answers_list,
             'questions_list': questions_list,
-            'full_name': request.user.username,
+            'first': request.user.first_name,
+            'last': request.user.last_name,
         }
         return render(request, template, context)
 
@@ -80,7 +83,8 @@ def my_questions(request):
         context = {
             'questions_list': questions_list,
             'answers_list': answers_list,
-            'full_name': request.user.username,
+            'first': request.user.first_name,
+            'last': request.user.last_name,
         }
         return render(request, template, context)
 
