@@ -5,6 +5,8 @@ from django.conf import settings
 DEBUG = False
 TEMPLATE_DEBUG = False
 
+SHARE_URL = ['https://serene-beach-9732.herokuapp.com']
+
 DATABASES = settings.DATABASES
 
 # Parse database configuration from $DATABASE_URL
@@ -15,7 +17,7 @@ DATABASES['default'] =  dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['https://serene-beach-9732.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 #import os

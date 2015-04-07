@@ -24,6 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
+
 # Application definition
 
 INSTALLED_APPS = (

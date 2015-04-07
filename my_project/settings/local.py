@@ -24,6 +24,9 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
+ALLOWED_HOSTS = ['*']
+
+SHARE_URL = 'http://127.0.0.1:8000/?ref='
 # Application definition
 
 INSTALLED_APPS = (
